@@ -1,0 +1,8 @@
+<div *ngIf="users.length > 0">
+  Users:
+  <app-user-list [users]="users"></app-user-list>
+</div>
+<div *ngIf="users.length == 0">
+  No users found
+</div>
+
