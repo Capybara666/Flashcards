@@ -7,19 +7,6 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserService {
 
-  users : User [] = [
-    {
-      id: BigInt(1),
-      login: 'l1',
-      password: 'p1'
-    },
-    {
-      id: BigInt(2),
-      login: 'l2',
-      password: 'p2'
-    }
-  ];
-
   constructor(private httpClient: HttpClient) { }
 
   getAllUsers() {

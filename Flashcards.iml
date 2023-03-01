@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/Frontend/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/Frontend/dist" />
+    <content url="file://$MODULE_DIR$/Backend">
+      <sourceFolder url="file://$MODULE_DIR$/Backend" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/Frontend">
+          <sourceFolder url="file://$MODULE_DIR$/Frontend" isTestSource="false" />
+        </content>
   </component>
 </module>

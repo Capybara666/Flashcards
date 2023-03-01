@@ -20,10 +20,6 @@ public class UserService {
 
     @GetMapping
     public List<UserResponseDto> getAllUsers() {
-        List<UserResponseDto> xd = userRepository.findAll().stream()
-                .map(UserMapper::objectToResponseDto)
-                .collect(Collectors.toList());
-        System.out.println(xd.size());
         return userRepository.findAll().stream()
                 .map(UserMapper::objectToResponseDto)
                 .collect(Collectors.toList());

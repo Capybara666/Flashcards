@@ -5,20 +5,19 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 @ToString
 @Getter
 @Setter
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @Column(name = "id")
     private long id;
-    @Column(name = "login")
+
     private String login;
-    @Column(name = "password")
+
     private String password;
 }
