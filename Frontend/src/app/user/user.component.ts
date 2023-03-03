@@ -1,4 +1,4 @@
-import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {User} from "./user";
 import {UserService} from "./services/user.service";
 
@@ -22,4 +22,15 @@ export class UserComponent implements OnInit {
       })
   }
 
+  registerNewUser() {
+    const user: User = {
+      id: BigInt(2),
+      login: "registeredLogin",
+      password: "registeredPassword"
+    }
+
+    this.userService.addNewUser(user).subscribe((response) => {
+      this.users = response;
+    });
+  }
 }

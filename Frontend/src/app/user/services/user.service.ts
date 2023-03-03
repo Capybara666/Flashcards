@@ -15,4 +15,9 @@ export class UserService {
   getAllUsers() {
     return this.httpClient.get<User[]>('/api/users');
   }
+
+  addNewUser(user: User) {
+    return this.httpClient.post<User[]>('/api/users', user);
+  }
+
 }
