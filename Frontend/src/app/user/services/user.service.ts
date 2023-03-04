@@ -1,23 +1,13 @@
-import {Inject, Injectable} from '@angular/core';
-import {User} from "../user";
-import {HttpClient} from "@angular/common/http";
-import {APP_SERVICE_CONFIG} from "../../AppConfig/appconfig.service";
-import {AppConfig} from "../../AppConfig/appconfig.interface";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient, @Inject(APP_SERVICE_CONFIG) private config: AppConfig) {
-  }
+  authenticated = false;
 
-  getAllUsers() {
-    return this.httpClient.get<User[]>('/api/users');
-  }
-
-  addNewUser(user: User) {
-    return this.httpClient.post<User[]>('/api/users', user);
-  }
+  constructor(private httpClient: HttpClient) {}
 
 }

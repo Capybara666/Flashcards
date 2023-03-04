@@ -9,7 +9,6 @@ public class UserMapper {
     public static UserEntity requestedDtoToObject (UserRequestedDto userRequestedDto) {
         Objects.requireNonNull(userRequestedDto);
         return UserEntity.builder()
-                .id(userRequestedDto.getId())
                 .login(userRequestedDto.getLogin())
                 .password(userRequestedDto.getPassword())
                 .build();
@@ -18,7 +17,6 @@ public class UserMapper {
     public static UserResponseDto objectToResponseDto(UserEntity userEntity) {
         Objects.requireNonNull(userEntity);
         return UserResponseDto.builder()
-                .id(userEntity.getId())
                 .login(userEntity.getLogin())
                 .password(userEntity.getPassword())
                 .build();

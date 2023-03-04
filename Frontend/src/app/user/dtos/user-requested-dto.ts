@@ -1,5 +1,4 @@
-export interface User {
-  id: bigint;
+export interface UserRequestedDto {
   login: string;
   password: string;
 }
