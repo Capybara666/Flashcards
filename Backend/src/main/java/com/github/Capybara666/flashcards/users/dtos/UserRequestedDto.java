@@ -1,4 +1,4 @@
-package com.github.Capybara666.flashcards.user.dtos;
+package com.github.Capybara666.flashcards.users.dtos;
 
 import lombok.*;
 

@@ -1,7 +1,7 @@
-package com.github.Capybara666.flashcards.user;
+package com.github.Capybara666.flashcards.users;
 
-import com.github.Capybara666.flashcards.user.dtos.UserRequestedDto;
-import com.github.Capybara666.flashcards.user.dtos.UserResponseDto;
+import com.github.Capybara666.flashcards.users.dtos.UserRequestedDto;
+import com.github.Capybara666.flashcards.users.dtos.UserResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

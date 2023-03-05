@@ -1,7 +1,12 @@
-package com.github.Capybara666.flashcards.user;
+package com.github.Capybara666.flashcards.users;
 
+import com.github.Capybara666.flashcards.flashcards.FlashcardSetEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +25,8 @@ public class UserEntity {
     private String login;
 
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<FlashcardSetEntity> flashcardSets = new HashSet<>();
 }

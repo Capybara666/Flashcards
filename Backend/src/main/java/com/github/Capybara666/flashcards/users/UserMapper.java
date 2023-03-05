@@ -1,7 +1,7 @@
-package com.github.Capybara666.flashcards.user;
+package com.github.Capybara666.flashcards.users;
 
-import com.github.Capybara666.flashcards.user.dtos.UserRequestedDto;
-import com.github.Capybara666.flashcards.user.dtos.UserResponseDto;
+import com.github.Capybara666.flashcards.users.dtos.UserRequestedDto;
+import com.github.Capybara666.flashcards.users.dtos.UserResponseDto;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;

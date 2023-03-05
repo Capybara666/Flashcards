@@ -1,4 +1,4 @@
-package com.github.Capybara666.flashcards.user;
+package com.github.Capybara666.flashcards.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
