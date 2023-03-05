@@ -1,5 +1,6 @@
 export interface UserResponseDto {
-  login: string;
-  password: string;
-  isLoginSuccessful: Boolean;
+  login: string
+  password: string
+  successfulLogin: boolean
+  registered: boolean
 }

@@ -17,6 +17,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './user/login/login.component';
 import { LogoutComponent } from './user/logout/logout.component';
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogoutComponent } from './user/logout/logout.component';
     NavComponent,
     NotfoundComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -27,16 +27,35 @@ public class UserService {
     }
 
     public ResponseEntity<UserResponseDto> loginUser(UserRequestedDto userRequestedDto) {
-        UserEntity userRequest = UserMapper.requestedDtoToObject(userRequestedDto);
-        UserEntity user = userRepository.findUserByLogin(userRequest.getLogin()).orElse(null);
-        UserResponseDto userResponseDto = UserMapper.objectToResponseDto(userRequest);
-        if(user != null) {
-            if (user.getPassword().equals(userRequest.getPassword())) {
-                userResponseDto.setIsLoginSuccessful(Boolean.TRUE);
-                return new ResponseEntity<>(userResponseDto, HttpStatus.ACCEPTED);
-            }
+        UserEntity requestedUser = UserMapper.requestedDtoToObject(userRequestedDto);
+        UserResponseDto userResponseDto = UserMapper.objectToResponseDto(requestedUser);
+        ResponseEntity<UserResponseDto> responseEntity;
+        UserEntity user = userRepository.findUserByLogin(userRequestedDto.getLogin()).orElse(null);
+        if(user != null && user.getPassword().equals(userRequestedDto.getPassword())) {
+            userResponseDto.setSuccessfulLogin(true);
+            responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.ACCEPTED);
         }
-        userResponseDto.setIsLoginSuccessful(Boolean.FALSE);
-        return new ResponseEntity<>(userResponseDto, HttpStatus.CONFLICT);
+        else {
+            userResponseDto.setSuccessfulLogin(false);
+            responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.CONFLICT);
+        }
+        return responseEntity;
+    }
+
+    public ResponseEntity<UserResponseDto> registerUser(UserRequestedDto userRequestedDto) {
+        UserEntity requestedUser = UserMapper.requestedDtoToObject(userRequestedDto);
+        UserResponseDto userResponseDto = UserMapper.objectToResponseDto(requestedUser);
+        ResponseEntity<UserResponseDto> responseEntity;
+        UserEntity user = userRepository.findUserByLogin(userRequestedDto.getLogin()).orElse(null);
+        if(user == null) {
+            userRepository.save(requestedUser);
+            userResponseDto.setRegistered(true);
+            responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.ACCEPTED);
+        }
+        else {
+            userResponseDto.setRegistered(false);
+            responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.CONFLICT);
+        }
+        return responseEntity;
     }
 }

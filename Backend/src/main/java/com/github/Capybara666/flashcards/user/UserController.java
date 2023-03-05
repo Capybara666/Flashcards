@@ -29,4 +29,9 @@ public class UserController {
         return userService.loginUser(userRequestedDto);
     }
 
+    @PostMapping(path = "/auth/register")
+    public ResponseEntity<UserResponseDto> registerUser(@RequestBody UserRequestedDto userRequestedDto) {
+        return userService.registerUser(userRequestedDto);
+    }
+
 }

@@ -5,9 +5,10 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/login">Login</a>
-      <app-logout></app-logout>
-      <a mat-list-item routerLink="/register">Register</a>
+      <a mat-list-item routerLink="/flashcard_sets" *ngIf="userLoggedIn">Flashcard sets</a>
+      <a mat-list-item routerLink="/login" *ngIf="!userLoggedIn">Login</a>
+      <app-logout *ngIf="userLoggedIn"></app-logout>
+      <a mat-list-item routerLink="/register" *ngIf="!userLoggedIn">Register</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
