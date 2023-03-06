@@ -27,6 +27,6 @@ public class UserEntity {
     private String password;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private Set<FlashcardSetEntity> flashcardSets = new HashSet<>();
 }

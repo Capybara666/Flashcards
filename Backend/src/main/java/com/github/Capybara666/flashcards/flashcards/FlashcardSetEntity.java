@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ public class FlashcardSetEntity {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "flashcardSet")
+    @OneToMany(mappedBy = "flashcardSet", orphanRemoval = true)
     private Set<FlashcardEntity> flashcards = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
