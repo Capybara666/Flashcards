@@ -31,12 +31,12 @@ public class FlashcardsController {
         return this.flashcardsService.getFlashcardSet(login, flashcardSetName);
     }
 
-    @PostMapping(path = "/flashcards/delete_set")
+    @DeleteMapping(path = "/flashcards/delete_set")
     public ResponseEntity<Void> deleteFlashcardSet(@RequestBody FlashcardSetRequestedDto flashcardSetRequestedDto) {
         return this.flashcardsService.deleteFlashcardSet(flashcardSetRequestedDto);
     }
 
-    @PostMapping(path = "/flashcards/delete")
+    @DeleteMapping(path = "/flashcards/delete")
     public ResponseEntity<Void> deleteFlashcard(@RequestBody FlashcardRequestedDto flashcardRequestedDto) {
         return this.flashcardsService.deleteFlashcard(flashcardRequestedDto);
     }
