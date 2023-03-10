@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {UserRequestedDto} from "../dtos/user-requested-dto";
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {UserResponseDto} from "../dtos/user-response-dto";
 import {BehaviorSubject, Observable} from "rxjs";
 
@@ -18,10 +17,9 @@ export class AuthenticationService {
 
   login(login: string, password: string) {
     let userRequestedDto = {"login": login, "password": password}
-    this.httpClient.post<UserResponseDto>('/api/auth/login', userRequestedDto)
+    this.httpClient.post<HttpResponse<any>>('/api/auth/login', userRequestedDto)
       .subscribe(response => {
-      this.userResponseDto = response;
-      if(this.userResponseDto.successfulLogin) {
+      if(response.status == 200) {
         this.createSession(this.userResponseDto.login);
       }
       window.location.reload()
@@ -32,9 +30,9 @@ export class AuthenticationService {
     window.sessionStorage.clear();
   }
 
-  register(login: string, password: string): Observable<UserResponseDto> {
+  register(login: string, password: string): Observable<HttpResponse<any>> {
     let userRequestedDto = {"login": login, "password": password}
-    return this.httpClient.post<UserResponseDto>('/api/auth/register', userRequestedDto);
+    return this.httpClient.post<HttpResponse<any>>('/api/auth/register', userRequestedDto);
   }
 
   private createSession(login: String): void {

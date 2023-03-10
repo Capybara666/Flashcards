@@ -8,6 +8,9 @@ import lombok.*;
 @Getter
 @Setter
 public class FlashcardResponseDto {
+    private long id;
     private String frontContent;
     private String backContent;
+    private long setId;
+
 }

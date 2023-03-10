@@ -27,6 +27,7 @@ public class UserEntity {
     private String password;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<FlashcardSetEntity> flashcardSets = new HashSet<>();
+
 }

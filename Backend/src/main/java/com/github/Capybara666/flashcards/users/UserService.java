@@ -2,6 +2,7 @@ package com.github.Capybara666.flashcards.users;
 
 import com.github.Capybara666.flashcards.users.dtos.UserRequestedDto;
 import com.github.Capybara666.flashcards.users.dtos.UserResponseDto;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -27,46 +28,32 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public ResponseEntity<UserResponseDto> loginUser(UserRequestedDto userRequestedDto) {
-        UserEntity requestedUser = UserMapper.requestedDtoToObject(userRequestedDto);
-        UserResponseDto userResponseDto = UserMapper.objectToResponseDto(requestedUser);
+    public ResponseEntity<Void> loginUser(@NotNull UserRequestedDto userRequestedDto) {
         try {
-            ResponseEntity<UserResponseDto> responseEntity;
             UserEntity user = userRepository.findUserByLogin(userRequestedDto.getLogin()).orElse(null);
-            if(user != null && user.getPassword().equals(userRequestedDto.getPassword())) {
-                userResponseDto.setSuccessfulLogin(true);
-                responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.ACCEPTED);
+            if (user != null && user.getPassword().equals(userRequestedDto.getPassword())) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            else {
-                userResponseDto.setSuccessfulLogin(false);
-                responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.CONFLICT);
-            }
-            return responseEntity;
         } catch (DataAccessException e) {
-            userResponseDto.setSuccessfulLogin(false);
-            return new ResponseEntity<>(userResponseDto, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity<UserResponseDto> registerUser(UserRequestedDto userRequestedDto) {
-        UserEntity requestedUser = UserMapper.requestedDtoToObject(userRequestedDto);
-        UserResponseDto userResponseDto = UserMapper.objectToResponseDto(requestedUser);
+    public ResponseEntity<Void> registerUser(UserRequestedDto userRequestedDto) {
         try {
-            ResponseEntity<UserResponseDto> responseEntity;
+            UserEntity requestedUser = UserMapper.requestedDtoToObject(userRequestedDto);
             UserEntity user = userRepository.findUserByLogin(userRequestedDto.getLogin()).orElse(null);
-            if(user == null) {
+            if (user == null) {
                 userRepository.save(requestedUser);
-                userResponseDto.setRegistered(true);
-                responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            else {
-                userResponseDto.setRegistered(false);
-                responseEntity = new ResponseEntity<>(userResponseDto, HttpStatus.CONFLICT);
-            }
-            return responseEntity;
         } catch (DataAccessException e) {
-            userResponseDto.setRegistered(false);
-            return new ResponseEntity<>(userResponseDto, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

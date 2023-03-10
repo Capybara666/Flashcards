@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {AuthenticationService} from "../services/authentication.service";
-import {UserResponseDto} from "../dtos/user-response-dto";
 
 @Component({
   selector: 'app-register',
@@ -22,8 +21,7 @@ export class RegisterComponent {
   onSubmit(): void {
     this.authService.register(this.form.login, this.form.password)
       .subscribe(response => {
-        let userResponseDto = (response as UserResponseDto)
-        this.successfullyRegistered = userResponseDto.registered
+        this.successfullyRegistered = response.status == 200;
         this.registerFailed = !this.successfullyRegistered;
         if(this.registerFailed) {
           window.location.reload();

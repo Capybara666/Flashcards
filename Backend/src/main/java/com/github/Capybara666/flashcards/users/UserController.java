@@ -25,12 +25,12 @@ public class UserController {
     }
 
     @PostMapping(path = "/auth/login")
-    public ResponseEntity<UserResponseDto> loginUser(@RequestBody UserRequestedDto userRequestedDto) {
+    public ResponseEntity<Void> loginUser(@RequestBody UserRequestedDto userRequestedDto) {
         return userService.loginUser(userRequestedDto);
     }
 
     @PostMapping(path = "/auth/register")
-    public ResponseEntity<UserResponseDto> registerUser(@RequestBody UserRequestedDto userRequestedDto) {
+    public ResponseEntity<Void> registerUser(@RequestBody UserRequestedDto userRequestedDto) {
         return userService.registerUser(userRequestedDto);
     }
 

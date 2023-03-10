@@ -23,7 +23,8 @@ public class FlashcardEntity {
     @Column(name = "back_content")
     private String backContent;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "flashcard_set_id", referencedColumnName = "id")
     private FlashcardSetEntity flashcardSet;
+
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-public class FlashcardSetResponseDto {
+public class FlashcardSetRequestedDto {
     private long id;
     private String name;
     private List<FlashcardResponseDto> flashcards;

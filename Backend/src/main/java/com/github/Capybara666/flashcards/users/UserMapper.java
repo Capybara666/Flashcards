@@ -7,18 +7,19 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class UserMapper {
-    public static UserEntity requestedDtoToObject (@NotNull UserRequestedDto userRequestedDto) {
+    public static UserEntity requestedDtoToObject(@NotNull UserRequestedDto userRequestedDto) {
         return UserEntity.builder()
                 .login(userRequestedDto.getLogin())
                 .password(userRequestedDto.getPassword())
                 .build();
     }
 
-    public static UserResponseDto objectToResponseDto(UserEntity userEntity) {
+    public static UserResponseDto objectToResponseDto(@NotNull UserEntity userEntity) {
         Objects.requireNonNull(userEntity);
         return UserResponseDto.builder()
                 .login(userEntity.getLogin())
                 .password(userEntity.getPassword())
                 .build();
     }
+
 }

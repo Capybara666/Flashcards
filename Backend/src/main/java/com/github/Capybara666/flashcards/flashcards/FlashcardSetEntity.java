@@ -26,10 +26,11 @@ public class FlashcardSetEntity {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "flashcardSet", orphanRemoval = true)
+    @OneToMany(mappedBy = "flashcardSet", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<FlashcardEntity> flashcards = new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity user;
+
 }
