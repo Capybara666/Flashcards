@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,6 +28,6 @@ public class UserEntity {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<FlashcardSetEntity> flashcardSets = new HashSet<>();
+    private List<FlashcardSetEntity> flashcardSets = new ArrayList<>();
 
 }

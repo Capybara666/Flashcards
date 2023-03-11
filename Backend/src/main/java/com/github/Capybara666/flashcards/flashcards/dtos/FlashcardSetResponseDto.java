@@ -9,6 +9,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@EqualsAndHashCode
 public class FlashcardSetResponseDto {
     private long id;
     private String name;

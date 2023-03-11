@@ -1,7 +1,6 @@
 package com.github.Capybara666.flashcards.users;
 
 import com.github.Capybara666.flashcards.users.dtos.UserRequestedDto;
-import com.github.Capybara666.flashcards.users.dtos.UserResponseDto;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -9,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -20,12 +17,6 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
-
-    public List<UserResponseDto> getAllUsers() {
-        return userRepository.findAll().stream()
-                .map(UserMapper::objectToResponseDto)
-                .collect(Collectors.toList());
     }
 
     public ResponseEntity<Void> loginUser(@NotNull UserRequestedDto userRequestedDto) {

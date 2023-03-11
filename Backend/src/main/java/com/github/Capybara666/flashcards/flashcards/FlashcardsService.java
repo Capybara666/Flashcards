@@ -128,8 +128,6 @@ public class FlashcardsService {
             if (flashcardSetToUpdate == null) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             } else {
-                UserEntity user = userRepository.findById(flashcardSetRequestedDto.getUserId()).orElse(null);
-                flashcardSetToUpdate.setUser(user);
                 flashcardSetToUpdate.setName(flashcardSetRequestedDto.getName());
                 this.flashcardSetRepository.save(flashcardSetToUpdate);
                 return new ResponseEntity<>(HttpStatus.OK);
@@ -154,5 +152,4 @@ public class FlashcardsService {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }
